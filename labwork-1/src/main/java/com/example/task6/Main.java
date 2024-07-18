@@ -1,31 +1,30 @@
 package com.example.task6;
 
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Main {
     private static final int operationsCount = 100_000;
 
     public static void main(String[] args) {
-        Counter counter = new Counter();
+        var counter = new Counter();
         syncMethod(counter);
         syncBlock(counter);
         blockObj(counter);
     }
 
     private static void blockObj(Counter counter) {
-        Lock lock = new ReentrantLock();
+        var lock = new ReentrantLock();
 
-        Thread thread1 = new Thread(() -> {
-            for (int i = 0; i < operationsCount; i++) {
+        var thread1 = new Thread(() -> {
+            for (var i = 0; i < operationsCount; i++) {
                 lock.lock();
                 counter.increment();
                 lock.unlock();
             }
         });
 
-        Thread thread2 = new Thread(() -> {
-            for (int i = 0; i < operationsCount; i++) {
+        var thread2 = new Thread(() -> {
+            for (var i = 0; i < operationsCount; i++) {
                 lock.lock();
                 counter.decrement();
                 lock.unlock();
@@ -46,14 +45,14 @@ public class Main {
     }
 
     private static void syncBlock(Counter counter) {
-        Thread thread1 = new Thread(() -> {
-            for (int i = 0; i < operationsCount; i++) {
+        var thread1 = new Thread(() -> {
+            for (var i = 0; i < operationsCount; i++) {
                 counter.syncBlockIncrement();
             }
         });
 
-        Thread thread2 = new Thread(() -> {
-            for (int i = 0; i < operationsCount; i++) {
+        var thread2 = new Thread(() -> {
+            for (var i = 0; i < operationsCount; i++) {
                 counter.syncBlockDecrement();
             }
         });
@@ -72,14 +71,14 @@ public class Main {
     }
 
     private static void syncMethod(Counter counter) {
-        Thread thread1 = new Thread(() -> {
-            for (int i = 0; i < operationsCount; i++) {
+        var thread1 = new Thread(() -> {
+            for (var i = 0; i < operationsCount; i++) {
                 counter.syncIncrement();
             }
         });
 
-        Thread thread2 = new Thread(() -> {
-            for (int i = 0; i < operationsCount; i++) {
+        var thread2 = new Thread(() -> {
+            for (var i = 0; i < operationsCount; i++) {
                 counter.syncDecrement();
             }
         });

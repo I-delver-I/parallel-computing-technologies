@@ -12,23 +12,23 @@ public class BounceFrame extends JFrame {
         setSize(WIDTH, HEIGHT);
         setTitle("Bounce program");
 
-        JLabel counterLabel = new JLabel("Score: 0");
+        var counterLabel = new JLabel("Score: 0");
         canvas = new BallCanvas(counterLabel);
         System.out.println("In Frame Thread name = " + Thread.currentThread().getName());
-        Container content = getContentPane();
+        var content = getContentPane();
 
         content.add(canvas, BorderLayout.CENTER);
-        JPanel buttonPanel = new JPanel();
+        var buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.LIGHT_GRAY);
 
-        JButton buttonStart = new JButton("Start");
-        JButton buttonStop = new JButton("Stop");
+        var buttonStart = new JButton("Start");
+        var buttonStop = new JButton("Stop");
 
         buttonStart.addActionListener(_ -> {
-            Ball b = new Ball(canvas);
+            var b = new Ball(canvas);
             canvas.add(b);
 
-            BallThread thread = new BallThread(b);
+            var thread = new BallThread(b);
             thread.start();
             System.out.println("Thread name = " + thread.getName());
         });

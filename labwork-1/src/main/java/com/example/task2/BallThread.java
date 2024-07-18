@@ -9,11 +9,11 @@ public class BallThread extends Thread {
 
     @Override
     public void run() {
-        final int iterationsCount = 10000;
-        final int sleepTime = 5;
+        final var iterationsCount = 10000;
+        final var sleepTime = 5;
 
         try {
-            for (int i = 1; i < iterationsCount; i++) {
+            for (var i = 1; i < iterationsCount; i++) {
                 if (b.isInPocket()) {
                     return;
                 }

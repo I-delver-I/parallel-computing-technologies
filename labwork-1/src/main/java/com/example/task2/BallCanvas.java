@@ -26,7 +26,7 @@ public class BallCanvas extends JPanel {
     }
 
     private void initPockets() {
-        int pocketDiameter = Pocket.RADIUS * 2;
+        var pocketDiameter = Pocket.RADIUS * 2;
 
         pockets.add(new Pocket(0, 0)); // Top-left corner
         pockets.add(new Pocket(getWidth() - pocketDiameter, 0)); // Top-right corner
@@ -46,14 +46,14 @@ public class BallCanvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        var g2 = (Graphics2D)g;
         initPockets();
 
-        for (Pocket pocket : pockets) {
+        for (var pocket : pockets) {
             pocket.draw(g2);
         }
 
-        for (Ball b : balls) {
+        for (var b : balls) {
             if (b.isInPocket()) {
                 incrementScore();
             }

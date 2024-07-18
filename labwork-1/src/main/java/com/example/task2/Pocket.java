@@ -15,13 +15,13 @@ public class Pocket {
 
     public void draw(Graphics2D g2) {
         g2.setColor(Color.BLACK);
-        int pocketDiameter = 2 * RADIUS;
+        var pocketDiameter = 2 * RADIUS;
         g2.fill(new Ellipse2D.Double(x, y, pocketDiameter, pocketDiameter));
     }
 
     public boolean containsBall(Ball ball) {
-        double distance = Math.sqrt(Math.pow(ball.getX() - x, 2) + Math.pow(ball.getY() - y, 2));
-        double diameter = RADIUS * 2;
+        var distance = Math.sqrt(Math.pow(ball.getX() - x, 2) + Math.pow(ball.getY() - y, 2));
+        var diameter = RADIUS * 2;
         return distance <= diameter;
     }
 }

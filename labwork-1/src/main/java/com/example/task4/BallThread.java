@@ -9,11 +9,11 @@ public class BallThread extends Thread {
 
     @Override
     public void run() {
-        final int iterationsCount = 1000;
-        final int sleepTime = 5;
+        final var iterationsCount = 1000;
+        final var sleepTime = 5;
 
         try {
-            for (int i = 1; i < iterationsCount; i++) {
+            for (var i = 1; i < iterationsCount; i++) {
                 while (b.isStopped()) {
                     Thread.sleep(0);
                 }

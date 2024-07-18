@@ -8,13 +8,13 @@ public class BallCanvas extends JPanel {
     private final ArrayList<Ball> balls = new ArrayList<>();
 
     public void  startBalls() {
-        for (Ball ball : balls) {
+        for (var ball : balls) {
             ball.startMovement();
         }
     }
 
     public void stopBalls() {
-        for (Ball ball : balls) {
+        for (var ball : balls) {
             ball.stop();
         }
     }
@@ -26,9 +26,9 @@ public class BallCanvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        var g2 = (Graphics2D)g;
 
-        for (Ball b : balls) {
+        for (var b : balls) {
             b.draw(g2);
         }
     }
