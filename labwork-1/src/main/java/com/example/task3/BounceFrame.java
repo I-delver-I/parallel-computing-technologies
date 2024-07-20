@@ -20,7 +20,7 @@ public class BounceFrame extends JFrame {
         var buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.LIGHT_GRAY);
 
-        var buttonStartBlue = new JButton("Start blue ball");
+        var buttonStartBlue = new JButton("Start 1000 blue balls");
         var buttonStartRed = new JButton("Start red ball");
         var buttonStop = new JButton("Stop");
 
