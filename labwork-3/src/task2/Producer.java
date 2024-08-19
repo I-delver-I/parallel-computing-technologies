@@ -1,7 +1,5 @@
 package task2;
 
-import java.util.Random;
-
 public class Producer implements Runnable {
     private final MessageQueue messageQueue;
 
@@ -16,8 +14,6 @@ public class Producer implements Runnable {
         for (var i = 0; i < numbers.length; i++) {
             numbers[i] = i + 1;
         }
-
-        var random = new Random();
 
         for (int number : numbers) {
             messageQueue.put(number);

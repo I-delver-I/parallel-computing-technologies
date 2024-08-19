@@ -2,30 +2,30 @@ package task2;
 
 public class MessageQueue {
     private int numberMessage;
-    private boolean empty = true;
+    private boolean isEmpty = true;
 
     public synchronized int take() {
-        if (empty) {
+        if (isEmpty) {
             try {
                 wait();
             } catch (InterruptedException _) {
             }
         }
 
-        empty = true;
+        isEmpty = true;
         notifyAll();
         return numberMessage;
     }
 
     public synchronized void put(int numberMessage) {
-        if (!empty) {
+        if (!isEmpty) {
             try {
                 wait();
             } catch (InterruptedException _) {
             }
         }
 
-        empty = false;
+        isEmpty = false;
         this.numberMessage = numberMessage;
         notifyAll();
     }
