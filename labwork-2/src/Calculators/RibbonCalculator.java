@@ -30,7 +30,8 @@ public class RibbonCalculator {
         return Math.max(height / threadsCount, 1);
     }
 
-    private List<Thread> createThreads(Matrix matrix1, Matrix matrix2, Matrix resultMatrix, int threadsCount, int rowsPerThread) {
+    private List<Thread> createThreads(Matrix matrix1, Matrix matrix2, Matrix resultMatrix, int threadsCount,
+                                       int rowsPerThread) {
         var threads = new ArrayList<Thread>();
         var height = matrix1.getRowsSize();
         var width = matrix2.getColumnsSize();
@@ -46,16 +47,17 @@ public class RibbonCalculator {
         return threads;
     }
 
-    private void multiplyPartial(Matrix matrix1, Matrix matrix2, Matrix resultMatrix, int from, int to, int width) {
-        for (var row = from; row < to; row++) {
-            for (var col = 0; col < width; col++) {
+    private void multiplyPartial(Matrix matrix1, Matrix matrix2, Matrix resultMatrix, int startMatrix1, int endMatrix1,
+                                 int widthMatrix2) {
+        for (var rowIdM1 = startMatrix1; rowIdM1 < endMatrix1; rowIdM1++) {
+            for (var columnIdM2 = 0; columnIdM2 < widthMatrix2; columnIdM2++) {
                 var sum = 0;
 
                 for (var k = 0; k < matrix2.getRowsSize(); k++) {
-                    sum += matrix1.get(row, k) * matrix2.get(k, col);
+                    sum += matrix1.get(rowIdM1, k) * matrix2.get(k, columnIdM2);
                 }
 
-                resultMatrix.set(row, col, sum);
+                resultMatrix.set(rowIdM1, columnIdM2, sum);
             }
         }
     }

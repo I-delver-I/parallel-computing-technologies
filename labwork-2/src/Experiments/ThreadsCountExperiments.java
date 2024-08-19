@@ -7,7 +7,7 @@ import Matrix.MatrixGenerator;
 
 public class ThreadsCountExperiments {
     final static int MATRIX_SIZE = 1300;
-    final static int THREADS_COUNT = 50;
+    final static int THREADS_COUNT = 32;
 
     public static void main(String[] args) {
         var matrixGenerator = new MatrixGenerator();

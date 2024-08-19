@@ -7,7 +7,7 @@ import Matrix.Matrix;
 import Matrix.MatrixGenerator;
 
 public class MatrixSizeExperiments {
-    final static int MATRIX_SIZE = 350;
+    final static int MATRIX_SIZE = 500;
     final static int THREADS_COUNT = 4;
 
     public static void main(String[] args) {

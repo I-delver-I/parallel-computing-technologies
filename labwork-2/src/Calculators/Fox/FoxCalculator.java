@@ -24,20 +24,20 @@ public class FoxCalculator {
         return resultMatrix;
     }
 
-    private FoxCalculatorThread[] createAndStartThreads(int step) {
+    private FoxCalculatorThread[] createAndStartThreads(int blockSize) {
         var threads = new FoxCalculatorThread[threadsCount];
-        var idx = 0;
+        var threadIndex = 0;
 
-        for (var i = 0; i < matrix1.getRowsSize(); i += step) {
-            for (var j = 0; j < matrix2.getColumnsSize(); j += step) {
-                if (idx >= threadsCount) {
+        for (var i = 0; i < matrix1.getRowsSize(); i += blockSize) {
+            for (var j = 0; j < matrix2.getColumnsSize(); j += blockSize) {
+                if (threadIndex >= threadsCount) {
                     System.err.println("Warning: More blocks than threads, some threads will handle multiple blocks.");
                     break;
                 }
 
-                threads[idx] = new FoxCalculatorThread(matrix1, matrix2, i, j, step, resultMatrix);
-                threads[idx].start();
-                idx++;
+                threads[threadIndex] = new FoxCalculatorThread(matrix1, matrix2, i, j, blockSize, resultMatrix);
+                threads[threadIndex].start();
+                threadIndex++;
             }
         }
 
