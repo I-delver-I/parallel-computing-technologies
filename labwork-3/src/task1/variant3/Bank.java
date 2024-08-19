@@ -20,6 +20,10 @@ public class Bank {
             return;
         }
 
+        if (accountBalances[sourceBalanceIndex] < amount) {
+            return;
+        }
+
         lock.lock();
 
         try {

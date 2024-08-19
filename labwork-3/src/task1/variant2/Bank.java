@@ -18,6 +18,10 @@ public class Bank {
             return;
         }
 
+        if (accountBalances[sourceBalanceIndex] < amount) {
+            return;
+        }
+
         synchronized (lock) {
             accountBalances[sourceBalanceIndex] -= amount;
             accountBalances[destinationBalanceIndex] += amount;

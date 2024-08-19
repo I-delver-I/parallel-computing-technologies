@@ -7,13 +7,17 @@ public class Bank {
     private final int[] accountBalances;
     private long nTransacts;
 
-    public Bank(int n, int initialBalance) {
-        accountBalances = new int[n];
+    public Bank(int balancesCount, int initialBalance) {
+        accountBalances = new int[balancesCount];
         Arrays.fill(accountBalances, initialBalance);
     }
 
     public synchronized void transferMoney(int sourceBalanceIndex, int destinationBalanceIndex, int amount) {
         if (sourceBalanceIndex == destinationBalanceIndex) {
+            return;
+        }
+
+        if (accountBalances[sourceBalanceIndex] < amount) {
             return;
         }
 
