@@ -1,14 +1,12 @@
 package task3;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Student {
     private final String name;
     private boolean isMarked = false;
-    private static final AtomicInteger nextStudentNumber = new AtomicInteger(1);
+    private static int nextStudentNumber = 1;
 
     public Student() {
-        this.name = "Student " + nextStudentNumber.getAndIncrement();
+        this.name = "Student " + nextStudentNumber++;
     }
 
     public String getName() {

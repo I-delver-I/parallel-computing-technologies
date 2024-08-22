@@ -2,7 +2,7 @@ import mpi.MPI;
 import mpi.MPIException;
 
 public class Main {
-    static final int MATRIX_SIZE = 2000;
+    static final int MATRIX_SIZE = 1500;
     static final int MAIN = 0;
     static final int FROM_MAIN = 1;
     static final int FROM_WORKER = 5;

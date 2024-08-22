@@ -1,12 +1,10 @@
 package task3;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 public class Journal {
     private final List<Group> groups;
-    private final ConcurrentMap<Student, List<Integer>> studentsMarks = new ConcurrentHashMap<>();
+    private final Map<Student, List<Integer>> studentsMarks = new HashMap<>();
 
     public Journal(List<Group> groups, int weeksCount) {
         if (weeksCount <= 0) {
@@ -17,7 +15,7 @@ public class Journal {
 
         for (var group : this.groups) {
             for (var student : group.getStudents()) {
-                this.studentsMarks.put(student, Collections.synchronizedList(new ArrayList<>()));
+                this.studentsMarks.put(student, new ArrayList<>());
             }
         }
     }
