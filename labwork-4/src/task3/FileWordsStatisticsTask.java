@@ -16,23 +16,23 @@ public class FileWordsStatisticsTask extends RecursiveTask<Set<String>> {
 
     @Override
     protected Set<String> compute() {
-        var setsToIntersect = filePaths.stream()
-                .map(this::getSetFromFile)
+        var wordSets = filePaths.stream()
+                .map(this::extractWordsFromFile)
                 .toList();
 
-        if (setsToIntersect.isEmpty()) {
+        if (wordSets.isEmpty()) {
             return new HashSet<>();
         }
 
-        var intersectionOfSets = new HashSet<>(setsToIntersect.getFirst());
-        for (var i = 1; i < setsToIntersect.size(); i++) {
-            intersectionOfSets.retainAll(setsToIntersect.get(i));
+        var commonWords = new HashSet<>(wordSets.getFirst());
+        for (var i = 1; i < wordSets.size(); i++) {
+            commonWords.retainAll(wordSets.get(i));
         }
 
-        return intersectionOfSets;
+        return commonWords;
     }
 
-    private Set<String> getSetFromFile(String filePath) {
+    private Set<String> extractWordsFromFile(String filePath) {
         final var oneOrMoreSpacesRegex = "\\s+";
         final var nonUnicodeLetterRegex = "[^\\p{L}]";
 
