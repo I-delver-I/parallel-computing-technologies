@@ -50,11 +50,13 @@ public class FileSearchKeyWordTask extends RecursiveTask<Boolean> {
         }
 
         var middleIndex = (endIndex + startIndex) / 2;
-        var leftTask = new FileSearchKeyWordTask(filePath, keyWords, wordsList, startIndex, middleIndex);
-        leftTask.fork();
 
+        var leftTask = new FileSearchKeyWordTask(filePath, keyWords, wordsList, startIndex, middleIndex);
         var rightTask = new FileSearchKeyWordTask(filePath, keyWords, wordsList, middleIndex, endIndex);
-        return leftTask.join() || rightTask.compute();
+        leftTask.fork();
+        rightTask.fork();
+
+        return leftTask.join() || rightTask.join();
     }
 
     private boolean wordsListContainsSearchWord() {

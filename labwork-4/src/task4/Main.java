@@ -7,7 +7,7 @@ public class Main {
     private static final String TEXTS_DIRECTORY_PATH = "src/texts";
 
     public static void main(String[] args) {
-        var keyWords = new String[]{"form"};
+        var keyWords = new String[]{"job", "form"};
 
         try (var pool = ForkJoinPool.commonPool()) {
             var filePaths = pool.invoke(new DirectorySearchKeyWordTask(TEXTS_DIRECTORY_PATH,
