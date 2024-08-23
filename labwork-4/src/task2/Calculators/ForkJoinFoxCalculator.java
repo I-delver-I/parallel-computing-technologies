@@ -1,5 +1,6 @@
 package task2.Calculators;
 
+import java.util.ArrayList;
 import java.util.concurrent.ForkJoinPool;
 import task2.Matrix.Matrix;
 
@@ -23,11 +24,18 @@ public class ForkJoinFoxCalculator {
 
         try (var pool = new ForkJoinPool(threadsCount)) {
             System.out.println("Threads count: " + pool.getParallelism());
+            var tasks = new ArrayList<ForkJoinFoxCalculatorTask>();
 
             for (var i = 0; i < matrix1.getRowsSize(); i += step) {
                 for (var j = 0; j < matrix2.getColumnsSize(); j += step) {
-                    pool.invoke(new ForkJoinFoxCalculatorTask(matrix1, matrix2, i, j, step, resultMatrix));
+                    var task = new ForkJoinFoxCalculatorTask(matrix1, matrix2, i, j, step, resultMatrix);
+                    tasks.add(task);
+                    pool.submit(task);
                 }
+            }
+
+            for (var task : tasks) {
+                task.join();
             }
         }
 
